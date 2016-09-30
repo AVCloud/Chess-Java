@@ -9,10 +9,7 @@ public abstract class GamePiece {
     protected abstract boolean validMove(ChessLocation location);
 
     protected boolean locationInBounds(ChessLocation location) {
-        if(location.getRow() >= 0 && location.getRow() < 8 && location.getRow() >= 0 && location.getCol() < 8) {
-            return true;
-        }
-        return false;
+        return location.getRow() >= 0 && location.getRow() < 8 && location.getRow() >= 0 && location.getCol() < 8;
     }
 
     protected ChessLocation getChessLocation() {

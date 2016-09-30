@@ -6,10 +6,7 @@ public class ChessBoard {
     }
 
     public boolean isPieceAt(int row, int col) {
-        if (board[row][col] != null) {
-            return true;
-        }
-        return false;
+        return board[row][col] != null;
     }
 
     public void placePieceAt(GamePiece piece, ChessLocation location) {
@@ -31,7 +28,7 @@ public class ChessBoard {
     }
 
     public void setupPieceAt(GamePiece piece, ChessLocation location) {
-       board[location.getRow()][location.getCol()] = piece;
+        board[location.getRow()][location.getCol()] = piece;
         piece.moveTo(location);
     }
 
