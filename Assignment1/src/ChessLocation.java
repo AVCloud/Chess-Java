@@ -1,6 +1,6 @@
 public class ChessLocation {
-    private Integer row;
-    private Integer col;
+    private int row;
+    private int col;
 
     public ChessLocation(int row, int col) {
         setRowAndCol(row, col);
@@ -12,11 +12,6 @@ public class ChessLocation {
 
     public int getCol() {
         return col;
-    }
-
-    public void setNull() {
-        row = null;
-        col = null;
     }
 
     public void setRowAndCol(int row, int col) {
