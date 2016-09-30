@@ -13,10 +13,10 @@ public class Application {
         System.out.println("Enter the row,col to move to in this format: row,col. Enter 'Q' at anytime to stop.");
         String input = scanner.nextLine();
 
-        while(!input.equals("Q")){
+        while(!input.equalsIgnoreCase("Q")){
             try {
-                row = Integer.parseInt(input.split(",")[0]);
-                col =Integer.parseInt(input.split(",")[1]);
+                row = Integer.parseInt(input.split(",")[0].trim());
+                col =Integer.parseInt(input.split(",")[1].trim());
 
                 System.out.println("Location selected: (" + row + " , " + col + ")");
 
