@@ -4,6 +4,7 @@ public class Knight extends GamePiece {
         this.owner = owner;
         chessLocation = initialLocation;
         chessGame = game;
+        chessGame.getChessBoard().setupPieceAt(this, chessLocation);
     }
 
     public void moveTo(ChessLocation newLocation) {

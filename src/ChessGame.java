@@ -9,8 +9,6 @@ public class ChessGame {
         chessBoard = new ChessBoard();
         location = new ChessLocation(0,0);
         firstPiece = new Knight("white", location, this);
-
-        chessBoard.setupPieceAt(firstPiece, location);
     }
 
     public ChessBoard getChessBoard() {

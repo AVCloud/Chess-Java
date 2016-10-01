@@ -12,7 +12,7 @@ public abstract class GamePiece {
         return location.getRow() >= 0 && location.getRow() < 8 && location.getRow() >= 0 && location.getCol() < 8;
     }
 
-    protected ChessLocation getChessLocation() {
+    public ChessLocation getChessLocation() {
         return chessLocation;
     }
 }
