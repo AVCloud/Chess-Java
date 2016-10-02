@@ -1,3 +1,7 @@
+package Chess;
+
+import GameEntities.GamePiece;
+
 public class ChessBoard {
     private GamePiece[][] board;
 
@@ -10,7 +14,7 @@ public class ChessBoard {
     }
 
     public void placePieceAt(GamePiece piece, ChessLocation location) {
-        if (piece.validMove(location)) {
+        if (locationInBounds(location) && piece.validMove(location)) {
             if (isPieceAt(location.getRow(), location.getCol())) {
                 System.out.println("Piece is here");
                 removePieceAt(location);
@@ -32,16 +36,23 @@ public class ChessBoard {
         piece.moveTo(location);
     }
 
+    private boolean locationInBounds(ChessLocation location) {
+        return location.getRow() >= 0 && location.getRow() < 8 && location.getRow() >= 0 && location.getCol() < 8;
+    }
+
     public void displayBoard() {
+        System.out.println("  0 1 2 3 4 5 6 7");
         for (int row = 0; row < 8; row++) {
+            System.out.print(row);
             for (int col = 0; col < 8; col++) {
                 if (board[row][col] != null) {
-                    System.out.print('P');
+                    System.out.print(" P");
                 } else {
-                    System.out.print("-");
+                    System.out.print(" -");
                 }
             }
             System.out.println();
         }
+        System.out.println();
     }
 }

@@ -1,3 +1,7 @@
+package Chess;
+
+import GameEntities.*;
+
 public class ChessGame {
 
     private ChessBoard chessBoard;

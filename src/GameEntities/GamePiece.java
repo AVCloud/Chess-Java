@@ -1,3 +1,8 @@
+package GameEntities;
+
+import Chess.ChessGame;
+import Chess.ChessLocation;
+
 public abstract class GamePiece {
 
     protected ChessGame chessGame;
@@ -5,12 +10,7 @@ public abstract class GamePiece {
     protected ChessLocation chessLocation;
 
     public abstract void moveTo(ChessLocation newLocation);
-
-    protected abstract boolean validMove(ChessLocation location);
-
-    protected boolean locationInBounds(ChessLocation location) {
-        return location.getRow() >= 0 && location.getRow() < 8 && location.getRow() >= 0 && location.getCol() < 8;
-    }
+    public abstract boolean validMove(ChessLocation location);
 
     public ChessLocation getChessLocation() {
         return chessLocation;

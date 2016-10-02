@@ -1,3 +1,8 @@
+package GameEntities;
+
+import Chess.ChessLocation;
+import Chess.ChessGame;
+
 public class Knight extends GamePiece {
 
     public Knight(String owner, ChessLocation initialLocation, ChessGame game) {
@@ -8,14 +13,12 @@ public class Knight extends GamePiece {
     }
 
     public void moveTo(ChessLocation newLocation) {
-        chessLocation.setRowAndCol(newLocation.getRow(), newLocation.getCol());
+        chessLocation.setRow(newLocation.getRow());
+        chessLocation.setCol(newLocation.getCol());
     }
 
-    protected boolean validMove(ChessLocation location) {
+    public boolean validMove(ChessLocation location) {
         boolean valid = false;
-        if (!locationInBounds(location)) {
-            return false;
-        }
         if (Math.abs(chessLocation.getRow() - location.getRow()) == 2 && Math.abs(chessLocation.getCol() - location.getCol()) == 1) {
             valid = true;
         }
