@@ -13,8 +13,7 @@ public class Knight extends GamePiece {
     }
 
     public void moveTo(ChessLocation newLocation) {
-        chessLocation.setRow(newLocation.getRow());
-        chessLocation.setCol(newLocation.getCol());
+        chessLocation = newLocation;
     }
 
     public boolean validMove(ChessLocation location) {

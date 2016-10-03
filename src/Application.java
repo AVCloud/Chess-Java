@@ -6,35 +6,37 @@ public class Application {
 
     public static void main(String[] args) {
         ChessGame chessGame = new ChessGame();
-        ChessLocation location = new ChessLocation(0, 0);
+        chessGame.getChessBoard().displayBoard();
+        runGameLoop(chessGame);
+    }
+
+    private static void runGameLoop(ChessGame chessGame) {
+        int row, col;
         Scanner scanner = new Scanner(System.in);
         String input;
-        int row, col;
 
-        chessGame.getChessBoard().displayBoard();
-        System.out.println("Enter the row,col to move to in this format: row,col. Enter 'Q' at anytime to stop.");
-        input = scanner.nextLine();
+        while(true){
+            System.out.println("Enter row, col to move. Enter Q to quit.");
+            input = scanner.nextLine();
+            if (input.equalsIgnoreCase("Q")) {
+                System.out.println("Game has ended");
+                return;
+            }
 
-        while(!input.equalsIgnoreCase("Q")){
             try {
                 row = Integer.parseInt(input.split(",")[0].trim());
                 col =Integer.parseInt(input.split(",")[1].trim());
-                location.setRow(row);
-                location.setCol(col);
                 System.out.println("Location selected: (" + row + " , " + col + ")");
 
-                chessGame.getChessBoard().placePieceAt(chessGame.getPiece(), location);
+                chessGame.getChessBoard().placePieceAt(chessGame.getPiece(), new ChessLocation(row, col));
                 chessGame.getChessBoard().displayBoard();
 
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-                System.out.println("Couldn't parse input, the format: row,col. Also 'Q' to quit.");
+                System.out.print("Couldn't parse input. ");
             } catch (NullPointerException e) {
                 System.out.println("NullPointerException :(, GL Debugging");
                 e.printStackTrace();
             }
-            System.out.println("Enter the next row,col to move to.");
-            input = scanner.nextLine();
         }
-        System.out.println("Game has ended");
     }
 }
