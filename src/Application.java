@@ -32,6 +32,7 @@ public class Application {
                 System.out.println("NullPointerException :(, GL Debugging");
                 e.printStackTrace();
             }
+            System.out.println("Enter the next row,col to move to.");
             input = scanner.nextLine();
         }
         System.out.println("Game has ended");
