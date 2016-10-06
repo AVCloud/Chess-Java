@@ -12,6 +12,10 @@ public abstract class GamePiece {
     public abstract void moveTo(ChessLocation newLocation);
     public abstract boolean validMove(ChessLocation location);
 
+    /**
+     * Returns the location of piece.
+     * @return ChessLocation of the GamePiece.
+     */
     public ChessLocation getChessLocation() {
         return chessLocation;
     }
