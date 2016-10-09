@@ -5,7 +5,6 @@ import Chess.ChessLocation;
 /**
  * The Application class is the application for chess,
  * which serves as a starting point for the chess game.
- * @author Jacky Chiu
  */
 public class Application {
     /**
@@ -33,7 +32,7 @@ public class Application {
         while(!gameOver){
             System.out.println("Enter row, col to move. Enter Q to quit.");
             input = scanner.nextLine();
-            if (input.equalsIgnoreCase("Q")) {
+            if (input.equalsIgnoreCase("Q") || input.equalsIgnoreCase("QUIT")) {
                 System.out.println("Game has ended");
                 gameOver = true;
                 continue;

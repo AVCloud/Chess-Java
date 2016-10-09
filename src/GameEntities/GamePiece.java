@@ -3,6 +3,9 @@ package GameEntities;
 import Chess.ChessGame;
 import Chess.ChessLocation;
 
+/**
+ * GamePiece is a general piece class for chess.
+ */
 public abstract class GamePiece {
 
     protected ChessGame chessGame;
