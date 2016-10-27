@@ -1,19 +1,19 @@
 package Chess;
 
-import GameEntities.GamePiece;
+import GameEntities.ChessPiece;
 
 /**
  * The Chessboard class is responsiable for mulipulating the board
  * by moving and removing pieces.
  */
 public class ChessBoard {
-    private GamePiece[][] board;
+    private ChessPiece[][] board;
 
     /**
      * Creates the board instance.
      */
     public ChessBoard() {
-        board = new GamePiece[8][8];
+        board = new ChessPiece[8][8];
     }
 
     /**
@@ -31,7 +31,7 @@ public class ChessBoard {
      * @param piece The piece to move.
      * @param location The location to move to.
      */
-    public void placePieceAt(GamePiece piece, ChessLocation location) {
+    public void placePieceAt(ChessPiece piece, ChessLocation location) {
         if (locationInBounds(location) && piece.validMove(location)) {
             if (isPieceAt(location.getRow(), location.getCol())) {
                 System.out.println("Piece is here");
@@ -59,7 +59,7 @@ public class ChessBoard {
      * @param piece The piece to set up.
      * @param location The location to set up at.
      */
-    public void setupPieceAt(GamePiece piece, ChessLocation location) {
+    public void setupPieceAt(ChessPiece piece, ChessLocation location) {
         board[location.getRow()][location.getCol()] = piece;
         piece.moveTo(location);
     }
@@ -73,7 +73,7 @@ public class ChessBoard {
         return location.getRow() >= 0 && location.getRow() < 8 && location.getRow() >= 0 && location.getCol() < 8;
     }
 
-    public GamePiece getPieceAt(ChessLocation location) {
+    public ChessPiece getPieceAt(ChessLocation location) {
         return board[location.getRow()][location.getCol()];
     }
 

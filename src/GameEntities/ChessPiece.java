@@ -4,9 +4,9 @@ import Chess.ChessGame;
 import Chess.ChessLocation;
 
 /**
- * GamePiece is a general piece class for chess.
+ * ChessPiece is a general piece class for chess.
  */
-public abstract class GamePiece {
+public abstract class ChessPiece {
 
     protected ChessGame chessGame;
     protected String owner;
@@ -15,13 +15,13 @@ public abstract class GamePiece {
    public abstract boolean validMove(ChessLocation location);
 
     /**
-     * Sets the private members of the GamePiece. Such as it's owner
+     * Sets the private members of the ChessPiece. Such as it's owner
      * the lcoation and the game it belongs to.
      * @param owner Owner string.
      * @param initialLocation Location to set knight in.
      * @param game Game that the knight belongs too.
      */
-    public GamePiece(String owner, ChessLocation initialLocation, ChessGame game) {
+    public ChessPiece(String owner, ChessLocation initialLocation, ChessGame game) {
         this.owner = owner;
         chessLocation = initialLocation;
         chessGame = game;
@@ -29,7 +29,7 @@ public abstract class GamePiece {
     }
 
     /**
-     * Sets the location of the GamePiece.
+     * Sets the location of the ChessPiece.
      * @param newLocation The new location of the knight.
      */
     public void moveTo(ChessLocation newLocation) {
@@ -38,7 +38,7 @@ public abstract class GamePiece {
 
     /**
      * Returns the location of piece.
-     * @return ChessLocation of the GamePiece.
+     * @return ChessLocation of the ChessPiece.
      */
     public ChessLocation getChessLocation() {
         return chessLocation;

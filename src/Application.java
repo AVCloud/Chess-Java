@@ -1,6 +1,6 @@
 import java.util.*;
 import Chess.*;
-import GameEntities.GamePiece;
+import GameEntities.ChessPiece;
 
 /**
  * The Application class is the application for chess,
@@ -29,7 +29,7 @@ public class Application {
         String input;
 
         ChessLocation newLocation;
-        GamePiece currentPiece;
+        ChessPiece currentPiece;
 
         System.out.println("Chess Game Menu:");
         while(!gameOver){
@@ -58,11 +58,11 @@ public class Application {
         System.out.println("Game has ended");
     }
 
-    private static GamePiece getCurrentPiece(ChessGame chessGame) {
+    private static ChessPiece getCurrentPiece(ChessGame chessGame) {
         Scanner scanner = new Scanner(System.in);
         String input;
         ChessLocation currentLocation;
-        GamePiece currentPiece;
+        ChessPiece currentPiece;
 
         while (true) {
             System.out.println("Enter row, col of piece.");

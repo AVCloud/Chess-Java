@@ -3,7 +3,7 @@ package GameEntities;
 import Chess.ChessLocation;
 import Chess.ChessGame;
 
-public class Knight extends GamePiece {
+public class Knight extends ChessPiece {
 
     /**
      * Sets the private members of the Knight. Such as it's owner

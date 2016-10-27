@@ -10,7 +10,7 @@ public class ChessGame {
 
     private ChessBoard chessBoard;
     //TEMP FOR ASSINGMENT ONE
-    private GamePiece firstPiece;
+    private ChessPiece firstPiece;
 
     /**
      * Create new instances of nessary properties.
