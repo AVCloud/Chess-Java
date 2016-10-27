@@ -1,6 +1,5 @@
 import java.util.*;
-import Chess.ChessGame;
-import Chess.ChessLocation;
+import Chess.*;
 import GameEntities.GamePiece;
 
 /**
@@ -44,7 +43,7 @@ public class Application {
                 }
 
                 currentPiece = getCurrentPiece(chessGame);
-                newLocation = getNewLocation(chessGame);
+                newLocation = getNewLocation();
 
                 chessGame.getChessBoard().placePieceAt(currentPiece, newLocation);
                 chessGame.getChessBoard().displayBoard();
@@ -66,10 +65,10 @@ public class Application {
         GamePiece currentPiece;
 
         while (true) {
-            System.out.println("Enter row, col of piece to move.");
+            System.out.println("Enter row, col of piece.");
             input = scanner.nextLine();
             currentLocation = createChessLocation(input);
-            if (!chessGame.getChessBoard().locationInBounds(currentLocation)) {
+            if (!ChessBoard.locationInBounds(currentLocation)) {
                 System.out.println("Location not on board, try again.");
                 continue;
             }
@@ -82,7 +81,7 @@ public class Application {
         }
     }
 
-    private static ChessLocation getNewLocation(ChessGame chessGame) {
+    private static ChessLocation getNewLocation() {
         Scanner scanner = new Scanner(System.in);
         String input;
 
@@ -92,7 +91,7 @@ public class Application {
             System.out.println("Enter row, col to move.");
             input = scanner.nextLine();
             newLocation = createChessLocation(input);
-            if (!chessGame.getChessBoard().locationInBounds(newLocation)) {
+            if (!ChessBoard.locationInBounds(newLocation)) {
                System.out.println("Location not on board, try again.");
             } else {
                 return newLocation;

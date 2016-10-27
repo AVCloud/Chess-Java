@@ -12,7 +12,7 @@ public abstract class GamePiece {
     protected String owner;
     protected ChessLocation chessLocation;
 
-    public abstract boolean validMove(ChessLocation location);
+   public abstract boolean validMove(ChessLocation location);
 
     /**
      * Sets the private members of the GamePiece. Such as it's owner

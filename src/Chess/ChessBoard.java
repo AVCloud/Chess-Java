@@ -69,7 +69,7 @@ public class ChessBoard {
      * @param location The location to check.
      * @return Boolean of if the location is in bounds or not.
      */
-    public boolean locationInBounds(ChessLocation location) {
+    public static boolean locationInBounds(ChessLocation location) {
         return location.getRow() >= 0 && location.getRow() < 8 && location.getRow() >= 0 && location.getCol() < 8;
     }
 
