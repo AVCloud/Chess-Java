@@ -13,18 +13,7 @@ public class Knight extends GamePiece {
      * @param game Game that the knight belongs too.
      */
     public Knight(String owner, ChessLocation initialLocation, ChessGame game) {
-        this.owner = owner;
-        chessLocation = initialLocation;
-        chessGame = game;
-        chessGame.getChessBoard().setupPieceAt(this, chessLocation);
-    }
-
-    /**
-     * Sets the location of the knight.
-     * @param newLocation The new location of the knight.
-     */
-    public void moveTo(ChessLocation newLocation) {
-        chessLocation = newLocation;
+        super(owner, initialLocation, game);
     }
 
     /**
