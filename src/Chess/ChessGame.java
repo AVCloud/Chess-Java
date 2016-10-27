@@ -27,13 +27,4 @@ public class ChessGame {
     public ChessBoard getChessBoard() {
         return chessBoard;
     }
-
-    /**
-     * TEMP FOR ASSINGMENT ONE
-     * Returns the piece to move.
-     * @return The only piece on the board to move.
-     */
-    public GamePiece getPiece() {
-        return firstPiece;
-    }
 }
