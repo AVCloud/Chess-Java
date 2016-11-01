@@ -86,7 +86,7 @@ public class ChessBoard {
             System.out.print(row);
             for (int col = 0; col < 8; col++) {
                 if (board[row][col] != null) {
-                    System.out.print(" P");
+                    System.out.print(" " + board[row][col].getId());
                 } else {
                     System.out.print(" -");
                 }

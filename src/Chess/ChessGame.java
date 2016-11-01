@@ -17,7 +17,7 @@ public class ChessGame {
      */
     public ChessGame() {
         chessBoard = new ChessBoard();
-        firstPiece = new Knight("white", new ChessLocation(0,0), this);
+        firstPiece = new Knight("player1", new ChessLocation(0,0), this);
     }
 
     /**

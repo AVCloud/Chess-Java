@@ -11,6 +11,7 @@ public abstract class ChessPiece {
     protected ChessGame chessGame;
     protected String owner;
     protected ChessLocation chessLocation;
+    protected char id;
 
    public abstract boolean validMove(ChessLocation location);
 
@@ -42,5 +43,9 @@ public abstract class ChessPiece {
      */
     public ChessLocation getChessLocation() {
         return chessLocation;
+    }
+
+    public char getId() {
+        return id;
     }
 }

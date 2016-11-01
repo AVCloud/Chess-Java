@@ -40,14 +40,13 @@ public class Application {
                 if (input.equalsIgnoreCase("Q") || input.equalsIgnoreCase("QUIT")) {
                     gameOver = true;
                     continue;
+                } else if (input.equalsIgnoreCase("M") || input.equalsIgnoreCase("MOVE") {
+                    currentPiece = getCurrentPiece(chessGame);
+                    newLocation = getNewLocation();
+
+                    chessGame.getChessBoard().placePieceAt(currentPiece, newLocation);
+                    chessGame.getChessBoard().displayBoard();
                 }
-
-                currentPiece = getCurrentPiece(chessGame);
-                newLocation = getNewLocation();
-
-                chessGame.getChessBoard().placePieceAt(currentPiece, newLocation);
-                chessGame.getChessBoard().displayBoard();
-
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("Couldn't parse input.");
             } catch (NullPointerException e) {
