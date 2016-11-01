@@ -11,6 +11,7 @@ public class ChessGame {
     private ChessBoard chessBoard;
     //TEMP FOR ASSINGMENT ONE
     private ChessPiece firstPiece;
+    private ChessPiece pawn;
 
     /**
      * Create new instances of nessary properties.
@@ -18,6 +19,7 @@ public class ChessGame {
     public ChessGame() {
         chessBoard = new ChessBoard();
         firstPiece = new Knight("player1", new ChessLocation(0,0), this);
+        pawn = new Pawn("player1", new ChessLocation(0,1), this);
     }
 
     /**

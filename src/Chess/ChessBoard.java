@@ -60,8 +60,10 @@ public class ChessBoard {
      * @param location The location to set up at.
      */
     public void setupPieceAt(ChessPiece piece, ChessLocation location) {
-        board[location.getRow()][location.getCol()] = piece;
-        piece.moveTo(location);
+        if (board[location.getRow()][location.getCol()] == null) {
+            board[location.getRow()][location.getCol()] = piece;
+            piece.moveTo(location);
+        }
     }
 
     /**

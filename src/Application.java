@@ -40,7 +40,7 @@ public class Application {
                 if (input.equalsIgnoreCase("Q") || input.equalsIgnoreCase("QUIT")) {
                     gameOver = true;
                     continue;
-                } else if (input.equalsIgnoreCase("M") || input.equalsIgnoreCase("MOVE") {
+                } else if (input.equalsIgnoreCase("M") || input.equalsIgnoreCase("MOVE")) {
                     currentPiece = getCurrentPiece(chessGame);
                     newLocation = getNewLocation();
 
