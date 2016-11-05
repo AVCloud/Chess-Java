@@ -5,8 +5,8 @@ import Chess.ChessGame;
 
 public class Pawn extends ChessPiece {
 
-    boolean firstMove;
-    int one;
+    private boolean firstMove;
+    private int one;
 
     public Pawn(String owner, ChessLocation initialLocation, ChessGame game) {
         super(owner, initialLocation, game);
@@ -21,15 +21,24 @@ public class Pawn extends ChessPiece {
     }
 
     public boolean validMove(ChessLocation location) {
+        boolean valid = false;
+
         if (location.getCol() == chessLocation.getCol()) {
             if (location.getRow() - chessLocation.getRow() == one) {
-                return true;
+                valid = true; 
+            } else if (firstMove && (location.getRow() - chessLocation.getRow() == (one * 2))) {
+                valid = true;
             }
-            if ((location.getRow() - chessLocation.getRow() == (one * 2)) && firstMove) {
-                firstMove = false;
-                return true;
+        } else if (Math.abs(location.getCol() - chessLocation.getCol()) == 1) {
+            if (game.getChessBoard().isPieceAt(location.getRow(), location.getCol()) && location.getRow() - chessLocation.getRow() == one) {
+                valid = true;
             }
         }
-        return false;
+
+        if (firstMove) {
+            firstMove = false;
+        }
+
+        return valid;
     }
 }
