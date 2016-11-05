@@ -34,7 +34,9 @@ public abstract class ChessPiece {
         if (start.getCol() == end.getCol()) { 
             int one = (start.getRow() - end.getRow() < 0) ? 1: -1;
             for (int row = start.getRow() + one; row < end.getRow(); row += one) {
-                return !(chessGame.getChessBoard().isPieceAt(row, start.getCol()));
+                if (chessGame.getChessBoard().isPieceAt(row, start.getCol())) {
+                    return false;
+                }
             }
             return true;
         }
@@ -43,7 +45,9 @@ public abstract class ChessPiece {
         if (start.getRow() == end.getRow()) {
             int one = (start.getCol() - end.getCol() < 0) ? 1: -1;
             for (int col = start.getCol() + one; col < end.getCol(); col += one) {
-                return !(chessGame.getChessBoard().isPieceAt(start.getRow(), col));
+                if (chessGame.getChessBoard().isPieceAt(start.getRow(), col)) {
+                    return false;
+                }
             }
             return true;
         }
@@ -54,14 +58,18 @@ public abstract class ChessPiece {
         if ((start.getCol() - end.getCol()) == (start.getRow() - end.getRow())) {
             int one = (start.getRow() - end.getRow() < 0) ? 1: -1;
             for (int inc = one; Math.abs(inc) < Math.abs(start.getRow() - end.getRow()); inc += one) {
-                return !(chessGame.getChessBoard().isPieceAt(start.getRow() + inc, start.getCol() + inc));
+                if (chessGame.getChessBoard().isPieceAt(start.getRow() + inc, start.getCol() + inc)) {
+                    return false;
+                }
             }
             return true;
         } else if ((start.getCol() - end.getCol()) * -1 == (start.getRow() - end.getCol())) {
             int one = (start.getRow() - end.getRow() < 0) ? 1: -1;
             int negOne = one * -1;
             for (int inc = one; Math.abs(inc) < Math.abs(start.getRow() - end.getRow()); inc += one) {
-                return !(chessGame.getChessBoard().isPieceAt(start.getRow() + inc, start.getCol() + inc * negOne));
+                if (chessGame.getChessBoard().isPieceAt(start.getRow() + inc, (start.getCol() + inc) * negOne)) {
+                    return false;
+                }
             }
             return true;
         }
