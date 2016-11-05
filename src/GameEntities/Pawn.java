@@ -20,6 +20,7 @@ public class Pawn extends ChessPiece {
         firstMove = true;
     }
 
+    @Override
     public boolean validMove(ChessLocation location) {
         boolean valid = false;
 
@@ -30,7 +31,7 @@ public class Pawn extends ChessPiece {
                 valid = true;
             }
         } else if (Math.abs(location.getCol() - chessLocation.getCol()) == 1) {
-            if (game.getChessBoard().isPieceAt(location.getRow(), location.getCol()) && location.getRow() - chessLocation.getRow() == one) {
+            if (chessGame.getChessBoard().isPieceAt(location.getRow(), location.getCol()) && location.getRow() - chessLocation.getRow() == one) {
                 valid = true;
             }
         }

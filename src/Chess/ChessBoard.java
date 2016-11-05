@@ -32,7 +32,7 @@ public class ChessBoard {
      * @param location The location to move to.
      */
     public void placePieceAt(ChessPiece piece, ChessLocation location) {
-        if (locationInBounds(location) && piece.validMove(location)) {
+        if (piece.validMove(location)) {
             if (isPieceAt(location.getRow(), location.getCol())) {
                 System.out.println("Piece is here");
                 removePieceAt(location);

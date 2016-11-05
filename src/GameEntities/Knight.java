@@ -26,6 +26,7 @@ public class Knight extends ChessPiece {
      * @param location Checks if the location is a valid move.
      * @return Boolean if the location is valid or not.
      */
+    @Override
     public boolean validMove(ChessLocation location) {
         boolean valid = false;
         if (Math.abs(chessLocation.getRow() - location.getRow()) == 2 && Math.abs(chessLocation.getCol() - location.getCol()) == 1) {

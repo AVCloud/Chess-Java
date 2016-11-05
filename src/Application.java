@@ -1,6 +1,6 @@
 import java.util.*;
 import Chess.*;
-import GameEntities.ChessPiece;
+import GameEntities.*;
 
 /**
  * The Application class is the application for chess,
@@ -101,7 +101,6 @@ public class Application {
     private static ChessLocation createChessLocation(String input) {
         int row = Integer.parseInt(input.split(",")[0].trim());
         int col = Integer.parseInt(input.split(",")[1].trim());
-        System.out.println("Location selected: (" + row + " , " + col + ")");
         return new ChessLocation(row, col);
     }
 }
