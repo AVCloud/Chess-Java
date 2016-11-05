@@ -13,7 +13,7 @@ public abstract class ChessPiece {
     protected ChessLocation chessLocation;
     protected char id;
 
-   public abstract boolean validMove(ChessLocation location);
+    public abstract boolean validMove(ChessLocation location);
 
     /**
      * Sets the private members of the ChessPiece. Such as it's owner
@@ -27,6 +27,54 @@ public abstract class ChessPiece {
         chessLocation = initialLocation;
         chessGame = game;
         chessGame.getChessBoard().setupPieceAt(this, chessLocation);
+    }
+
+    protected boolean checkLineOfSight(ChessLocation start, ChessLocation end) {
+        // Vertical
+        if (start.getCol() == end.getCol()) { 
+            int one = (start.getRow() - end.getRow() < 0) ? 1: -1;
+            for (int row = start.getRow() + one; row < end.getRow(); row += one) {
+                if (chessGame.getChessBoard().isPieceAt(row, start.getCol())) {
+                    return false; 
+                }
+            }
+            return true;
+        }
+
+        // Horizontal
+        if (start.getRow() == end.getRow()) {
+            int one = (start.getCol() - end.getCol() < 0) ? 1: -1;
+            for (int col = start.getCol() + one; col < end.getCol(); col += one) {
+                if (chessGame.getChessBoard().isPieceAt(start.getRow(), col)) {
+                    return false; 
+                }
+            }
+            return true;
+        }
+
+        // Diagonal
+        // Case 1 : Slope -1
+        // Case 2 : Slope 1
+        if ((start.getCol() - end.getCol()) == (start.getRow() - end.getCol())) {
+            int one = (start.getRow() - end.getRow() < 0) ? 1: -1;
+            for (int inc = one; Math.abs(inc) < Math.abs(start.getRow() - end.getRow()); inc += one) {
+                if (chessGame.getChessBoard().isPieceAt(start.getRow() + inc, start.getCol() + inc)) {
+                    return false; 
+                }
+            }
+            return true;
+        } else if ((start.getCol() - end.getCol()) * -1 == (start.getRow() - end.getCol())) {
+            int one = (start.getRow() - end.getRow() < 0) ? 1: -1;
+            int negOne = one * -1;
+            for (int inc = one; Math.abs(inc) < Math.abs(start.getRow() - end.getRow()); inc += one) {
+                if (chessGame.getChessBoard().isPieceAt(start.getRow() + inc, start.getCol() + inc * negOne)) {
+                    return false; 
+                }
+            }
+            return true;
+        }
+
+        return false;
     }
 
     /**
