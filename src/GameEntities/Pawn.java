@@ -31,24 +31,26 @@ public class Pawn extends ChessPiece {
      */
     @Override
     public boolean validMove(ChessLocation location) {
-        boolean valid = false;
-
         if (location.getCol() == chessLocation.getCol()) {
             if (location.getRow() - chessLocation.getRow() == one) {
-                valid = true; 
+                if (firstMove) {
+                    firstMove = false;
+                }
+                return true;
             } else if (firstMove && (location.getRow() - chessLocation.getRow() == (one * 2))) {
-                valid = true;
+                if (firstMove) {
+                    firstMove = false;
+                }
+                return true;
             }
         } else if (Math.abs(location.getCol() - chessLocation.getCol()) == 1) {
             if (chessGame.getChessBoard().isPieceAt(location.getRow(), location.getCol()) && location.getRow() - chessLocation.getRow() == one) {
-                valid = true;
+                if (firstMove) {
+                    firstMove = false;
+                }
+                return true;
             }
         }
-
-        if (firstMove) {
-            firstMove = false;
-        }
-
-        return valid;
+        return false;
     }
 }
