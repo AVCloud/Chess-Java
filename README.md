@@ -1,11 +1,8 @@
 # Chess-Java
-Assignment for introductory to Object Oriented Programming course
+A little project for object oriented development practice.
 
 ## Run 
     git clone https://github.com/JackyChiu/Chess-Java.git
     cd Chess-Java/src
-    javac Application.java
-    java Application
+    java -jar Chess-Java.jar
 
-## Assignment 1: Chess Board & Pieces
-Create a chess board with moveable pieces, and control through input
