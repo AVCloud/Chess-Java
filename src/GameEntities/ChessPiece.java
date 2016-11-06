@@ -67,7 +67,7 @@ public abstract class ChessPiece {
             int one = (start.getRow() - end.getRow() < 0) ? 1: -1;
             int negOne = one * -1;
             for (int inc = one; Math.abs(inc) < Math.abs(start.getRow() - end.getRow()); inc += one) {
-                if (chessGame.getChessBoard().isPieceAt(start.getRow() + inc, (start.getCol() + inc) * negOne)) {
+                if (chessGame.getChessBoard().isPieceAt(start.getRow() + inc, start.getCol() + (inc * negOne))) {
                     return false;
                 }
             }
