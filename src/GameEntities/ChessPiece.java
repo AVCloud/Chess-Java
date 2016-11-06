@@ -29,6 +29,12 @@ public abstract class ChessPiece {
         chessGame.getChessBoard().setupPieceAt(this, chessLocation);
     }
 
+    /**
+     * Checks for the line of sight of the move.
+     * @param start Start location.
+     * @param end End location.
+     * @return Valid move or not
+     */
     protected boolean checkLineOfSight(ChessLocation start, ChessLocation end) {
         // Vertical
         if (start.getCol() == end.getCol()) { 
@@ -73,7 +79,6 @@ public abstract class ChessPiece {
             }
             return true;
         }
-
         return false;
     }
 
@@ -93,6 +98,18 @@ public abstract class ChessPiece {
         return chessLocation;
     }
 
+    /**
+     * Gets the owner String
+     * @return Owner string
+     */
+    public String getOwner() {
+        return owner;
+    }
+
+    /**
+     * Gets the id of the piece.
+     * @return Char of the id.
+     */
     public char getId() {
         return id;
     }

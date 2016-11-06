@@ -14,31 +14,33 @@ public class ChessGame {
      * Create new instances of nessary properties.
      */
     public ChessGame() {
-        boolean bottom = false;
+        // Top side
+        int side = 0;
+        String player = "player1";
         int colIncerment = 0;
         chessBoard = new ChessBoard();
         // Rook
-        ChessPiece r1 = new Rook("player1", new ChessLocation(0, colIncerment), this);
-        ChessPiece r2 = new Rook("player1", new ChessLocation(0, 7-colIncerment), this);
+        ChessPiece r1 = new Rook(player, new ChessLocation(side, colIncerment), this);
+        ChessPiece r2 = new Rook(player, new ChessLocation(side, 7-colIncerment), this);
         colIncerment += 1;
 
         // Knight
-        ChessPiece n1 = new Knight("player1", new ChessLocation(0, colIncerment), this);
-        ChessPiece n2 = new Knight("player1", new ChessLocation(0, 7-colIncerment), this);
+        ChessPiece n1 = new Knight(player, new ChessLocation(side, colIncerment), this);
+        ChessPiece n2 = new Knight(player, new ChessLocation(side, 7-colIncerment), this);
         colIncerment += 1;
 
         // Bishop
-        ChessPiece b1 = new Bishop("player1", new ChessLocation(0, colIncerment), this);
-        ChessPiece b2 = new Bishop("player1", new ChessLocation(0, 7-colIncerment), this);
+        ChessPiece b1 = new Bishop(player, new ChessLocation(side, colIncerment), this);
+        ChessPiece b2 = new Bishop(player, new ChessLocation(side, 7-colIncerment), this);
         colIncerment += 1;
 
         // King & Queen
-        ChessPiece k = new King("player1", new ChessLocation(0, colIncerment), this);
-        ChessPiece q = new Queen("player1", new ChessLocation(0, 7-colIncerment), this);
+        ChessPiece k = new King(player, new ChessLocation(side, colIncerment), this);
+        ChessPiece q = new Queen(player, new ChessLocation(side, 7-colIncerment), this);
 
         // Pawns
         for (int i = 0; i < 8; i++) {
-            ChessPiece p = new Pawn("player1", new ChessLocation(1, i), this);
+            ChessPiece p = new Pawn(player, new ChessLocation(side + 1, i), this);
         }
     }
 

@@ -5,6 +5,11 @@ import Chess.ChessGame;
 
 public class Bishop extends ChessPiece {
     
+    /** Creates a new Bishop piece.
+     * @param owner Owner string.
+     * @param initialLocation Location to set Bishop in.
+     * @param game Game that the Bishop belongs too.
+     */
     public Bishop(String owner, ChessLocation initialLocation, ChessGame game) {
         super(owner, initialLocation, game);
         if (owner.equalsIgnoreCase("player1")) {
@@ -14,6 +19,9 @@ public class Bishop extends ChessPiece {
         }
     }
 
+    /** Checks if more is valid for Bishop.
+     * @return Valid move or not.
+     */
     @Override
     public boolean validMove(ChessLocation location) {
         if (Math.abs(chessLocation.getRow() - location.getRow()) == Math.abs(chessLocation.getCol() - location.getCol())) {

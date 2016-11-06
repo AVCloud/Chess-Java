@@ -8,6 +8,12 @@ public class Pawn extends ChessPiece {
     private boolean firstMove;
     private int one;
 
+    /** 
+     * Constructs a new Pawn piece.
+     * @param owner Owner string.
+     * @param initialLocation Location to set Pawn in.
+     * @param game Game that the Pawn belongs too.
+     */
     public Pawn(String owner, ChessLocation initialLocation, ChessGame game) {
         super(owner, initialLocation, game);
         if (owner.equalsIgnoreCase("player1")) {
@@ -20,6 +26,9 @@ public class Pawn extends ChessPiece {
         firstMove = true;
     }
 
+    /** Checks if more is valid for Pawns.
+     * @return Valid move or not.
+     */
     @Override
     public boolean validMove(ChessLocation location) {
         boolean valid = false;

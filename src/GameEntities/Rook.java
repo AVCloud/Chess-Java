@@ -5,6 +5,12 @@ import Chess.ChessGame;
 
 public class Rook extends ChessPiece {
     
+    /**
+     * Creates a new Rook piece.
+     * @param owner Owner string.
+     * @param initialLocation Location to set Rook in.
+     * @param game Game that the Rook belongs too.
+     */
     public Rook(String owner, ChessLocation initialLocation, ChessGame game) {
         super(owner, initialLocation, game);
         if (owner.equalsIgnoreCase("player1")) {
@@ -14,6 +20,9 @@ public class Rook extends ChessPiece {
         }
     }
 
+    /** Checks if more is valid for Rook.
+     * @return Valid move or not.
+     */
     @Override
     public boolean validMove(ChessLocation location) {
         if ((chessLocation.getRow() == location.getRow()) != (chessLocation.getCol() == location.getCol())) {

@@ -5,6 +5,12 @@ import Chess.ChessGame;
 
 public class King extends ChessPiece {
     
+    /**
+     * Creates a King piece.
+     * @param owner Owner string.
+     * @param initialLocation Location to set King in.
+     * @param game Game that the King belongs too.
+     */
     public King(String owner, ChessLocation initialLocation, ChessGame game) {
         super(owner, initialLocation, game);
         if (owner.equalsIgnoreCase("player1")) {
@@ -14,6 +20,9 @@ public class King extends ChessPiece {
         }
     }
 
+    /** Checks if more is valid for King.
+     * @return Valid move or not.
+     */
     @Override
     public boolean validMove(ChessLocation location) {
         if (Math.abs(chessLocation.getRow() - location.getRow()) <= 1 && Math.abs(chessLocation.getCol() - location.getCol()) <= 1) {

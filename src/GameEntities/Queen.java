@@ -5,6 +5,12 @@ import Chess.ChessGame;
 
 public class Queen extends ChessPiece {
     
+    /**
+     * Creates a new Queen piece.
+     * @param owner Owner string.
+     * @param initialLocation Location to set Queen in.
+     * @param game Game that the Queen belongs too.
+     */
     public Queen(String owner, ChessLocation initialLocation, ChessGame game) {
         super(owner, initialLocation, game);
         if (owner.equalsIgnoreCase("player1")) {
@@ -14,6 +20,9 @@ public class Queen extends ChessPiece {
         }
     }
 
+    /** Checks if more is valid for Queen.
+     * @return Valid move or not.
+     */
     @Override
     public boolean validMove(ChessLocation location) {
         return checkLineOfSight(chessLocation, location);
