@@ -16,6 +16,7 @@ public class ChessGame {
     public ChessGame() {
         // Top side
         int side = 0;
+        int one = (side > 0) ? -1: 1;
         String player = "player1";
         int colIncerment = 0;
         chessBoard = new ChessBoard();
@@ -40,7 +41,7 @@ public class ChessGame {
 
         // Pawns
         for (int i = 0; i < 8; i++) {
-            ChessPiece p = new Pawn(player, new ChessLocation(side + 1, i), this);
+            ChessPiece p = new Pawn(player, new ChessLocation(side + one, i), this);
         }
     }
 
