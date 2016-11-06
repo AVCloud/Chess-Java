@@ -33,13 +33,15 @@ public class ChessBoard {
      */
     public void placePieceAt(ChessPiece piece, ChessLocation location) {
         if (piece.validMove(location)) {
-            if (isPieceAt(location.getRow(), location.getCol())) {
-                System.out.println("Piece is here");
+            if (isPieceAt(location.getRow(), location.getCol()) && getPieceAt(location).getOwner().equals(piece.getOwner())) {
+                System.out.println("Piece is on your team is here.");
+                System.out.println("Not a valid move, try again.");
+            } else {
                 removePieceAt(location);
+                removePieceAt(piece.getChessLocation());
+                board[location.getRow()][location.getCol()] = piece;
+                piece.moveTo(location);
             }
-            removePieceAt(piece.getChessLocation());
-            board[location.getRow()][location.getCol()] = piece;
-            piece.moveTo(location);
         } else {
             System.out.println("Not a valid move, try again.");
         }
@@ -75,6 +77,11 @@ public class ChessBoard {
         return location.getRow() >= 0 && location.getRow() < 8 && location.getRow() >= 0 && location.getCol() < 8;
     }
 
+    /**
+     * Gets piece at location of board.
+     * @param location Location to find piece at.
+     * @return Piece at location/
+     */
     public ChessPiece getPieceAt(ChessLocation location) {
         return board[location.getRow()][location.getCol()];
     }
