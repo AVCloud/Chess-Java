@@ -89,19 +89,20 @@ public class ChessBoard {
     /**
      * Displays board with P being Piece.
      */
-    public void displayBoard() {
-        System.out.println("  0 1 2 3 4 5 6 7");
+    @Override
+    public String toString() {
+        String s = "  0 1 2 3 4 5 6 7\n";
         for (int row = 0; row < 8; row++) {
-            System.out.print(row);
+            s += row;
             for (int col = 0; col < 8; col++) {
                 if (board[row][col] != null) {
-                    System.out.print(" " + board[row][col].getId());
+                    s += " " + board[row][col].getId();
                 } else {
-                    System.out.print(" -");
+                    s += " -";
                 }
             }
-            System.out.println();
+            s += "\n";
         }
-        System.out.println();
+        return s;
     }
 }
