@@ -9,21 +9,11 @@ import GameEntities.*;
 public class Application {
     /**
      * Creates game and displays board.
-     * Runs the game loop.
+     * Starts the game loop, where the application prompts the user for input.
      * @param args Command line args.
      */
     public static void main(String[] args) {
         ChessGame chessGame = new ChessGame();
-        chessGame.getChessBoard().displayBoard();
-        runGameLoop(chessGame);
-    }
-
-    /**
-     * Starts the game loop, where the application prompts the user for input.
-     * It internperts the input and moves pieces.
-     * @param chessGame The game to run game loop on.
-     */
-    private static void runGameLoop(ChessGame chessGame) {
         boolean gameOver = false;
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -31,9 +21,10 @@ public class Application {
         ChessLocation newLocation;
         ChessPiece currentPiece;
 
-        System.out.println("Chess Game Menu:");
         while(!gameOver){
             try {
+                System.out.println(chessGame.getChessBoard().toString());
+                System.out.println("Chess Game Menu:");
                 System.out.println("Q - Quit Game");
                 System.out.println("M - Move a piece");
                 input = scanner.nextLine();
@@ -45,7 +36,6 @@ public class Application {
                     newLocation = getNewLocation();
 
                     chessGame.getChessBoard().placePieceAt(currentPiece, newLocation);
-                    chessGame.getChessBoard().displayBoard();
                 }
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("Couldn't parse input.");
