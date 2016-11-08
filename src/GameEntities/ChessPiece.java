@@ -61,7 +61,9 @@ public abstract class ChessPiece {
         // Diagonal
         // Case 1 : Slope -1
         // Case 2 : Slope 1
-        if ((start.getCol() - end.getCol()) == (start.getRow() - end.getRow())) {
+        if (start.getCol() - end.getCol() == 
+            start.getRow() - end.getRow()) {
+
             int one = (start.getRow() - end.getRow() < 0) ? 1: -1;
             for (int inc = one; Math.abs(inc) < Math.abs(start.getRow() - end.getRow()); inc += one) {
                 if (chessGame.getChessBoard().isPieceAt(start.getRow() + inc, start.getCol() + inc)) {
@@ -69,7 +71,9 @@ public abstract class ChessPiece {
                 }
             }
             return true;
-        } else if ((start.getCol() - end.getCol()) * -1 == (start.getRow() - end.getCol())) {
+        } else if (start.getCol() - end.getCol() * -1 == 
+                   start.getRow() - end.getCol()) {
+
             int one = (start.getRow() - end.getRow() < 0) ? 1: -1;
             int negOne = one * -1;
             for (int inc = one; Math.abs(inc) < Math.abs(start.getRow() - end.getRow()); inc += one) {

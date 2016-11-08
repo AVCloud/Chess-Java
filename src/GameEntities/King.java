@@ -25,7 +25,9 @@ public class King extends ChessPiece {
      */
     @Override
     public boolean validMove(ChessLocation location) {
-        if (Math.abs(chessLocation.getRow() - location.getRow()) <= 1 && Math.abs(chessLocation.getCol() - location.getCol()) <= 1) {
+        if (Math.abs(chessLocation.getRow() - location.getRow()) <= 1 && 
+            Math.abs(chessLocation.getCol() - location.getCol()) <= 1) {
+
             return checkLineOfSight(chessLocation, location);
         }
         return false;

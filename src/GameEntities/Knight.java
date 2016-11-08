@@ -28,13 +28,15 @@ public class Knight extends ChessPiece {
      */
     @Override
     public boolean validMove(ChessLocation location) {
-        boolean valid = false;
-        if (Math.abs(chessLocation.getRow() - location.getRow()) == 2 && Math.abs(chessLocation.getCol() - location.getCol()) == 1) {
-            valid = true;
+        if (Math.abs(chessLocation.getRow() - location.getRow()) == 2 && 
+            Math.abs(chessLocation.getCol() - location.getCol()) == 1) {
+
+            return true; 
+        } else if (Math.abs(chessLocation.getRow() - location.getRow()) == 1 && 
+                   Math.abs(chessLocation.getCol() - location.getCol()) == 2) {
+
+            return true; 
         }
-        if (Math.abs(chessLocation.getRow() - location.getRow()) == 1 && Math.abs(chessLocation.getCol() - location.getCol()) == 2) {
-            valid = true;
-        }
-        return valid;
+        return false;
     }
 }

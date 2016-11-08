@@ -33,7 +33,9 @@ public class ChessBoard {
      */
     public void placePieceAt(ChessPiece piece, ChessLocation location) {
         if (piece.validMove(location)) {
-            if (isPieceAt(location.getRow(), location.getCol()) && getPieceAt(location).getOwner().equals(piece.getOwner())) {
+            if (isPieceAt(location.getRow(), location.getCol()) && 
+                getPieceAt(location).getOwner().equals(piece.getOwner())) {
+
                 System.out.println("Piece is on your team is here.");
                 System.out.println("Not a valid move, try again.");
             } else {
@@ -74,7 +76,10 @@ public class ChessBoard {
      * @return Boolean of if the location is in bounds or not.
      */
     public static boolean locationInBounds(ChessLocation location) {
-        return location.getRow() >= 0 && location.getRow() < 8 && location.getRow() >= 0 && location.getCol() < 8;
+        return location.getRow() >= 0 && 
+               location.getRow() < 8 && 
+               location.getRow() >= 0 && 
+               location.getCol() < 8;
     }
 
     /**

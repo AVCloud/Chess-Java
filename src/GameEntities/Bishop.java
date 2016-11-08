@@ -24,7 +24,9 @@ public class Bishop extends ChessPiece {
      */
     @Override
     public boolean validMove(ChessLocation location) {
-        if (Math.abs(chessLocation.getRow() - location.getRow()) == Math.abs(chessLocation.getCol() - location.getCol())) {
+        if (Math.abs(chessLocation.getRow() - location.getRow()) == 
+            Math.abs(chessLocation.getCol() - location.getCol())) {
+            
             return checkLineOfSight(chessLocation, location);
         }
         return false;
