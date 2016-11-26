@@ -14,12 +14,20 @@ public class ChessGame {
      * Create new instances of nessary properties.
      */
     public ChessGame() {
-        // Top side
-        int side = 0;
-        int one = (side > 0) ? -1: 1;
-        String player = "player1";
-        int colIncerment = 0;
         chessBoard = new ChessBoard();
+        setupTeam(0, "player1");
+        setupTeam(7, "player2");
+    }
+
+    /**
+     * Sets up pieces for each player.
+     * @param side Starting side of the player
+     * @param player String of the player
+     */
+    private void setupTeam(int side, String player) {
+        int one = (side > 0) ? -1: 1;
+        int colIncerment = 0;
+
         // Rook
         ChessPiece r1 = new Rook(player, new ChessLocation(side, colIncerment), this);
         ChessPiece r2 = new Rook(player, new ChessLocation(side, 7-colIncerment), this);
