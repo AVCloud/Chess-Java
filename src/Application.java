@@ -58,7 +58,7 @@ public class Application {
         ChessPiece currentPiece;
 
         while (true) {
-            System.out.println("Enter row, col of piece.");
+            System.out.println("Move from: row, col");
             input = scanner.nextLine();
             currentLocation = createChessLocation(input);
             if (!ChessBoard.locationInBounds(currentLocation)) {
@@ -81,7 +81,7 @@ public class Application {
         ChessLocation newLocation;
 
         while (true) {
-            System.out.println("Enter row, col to move.");
+            System.out.println("Move to: row, col");
             input = scanner.nextLine();
             newLocation = createChessLocation(input);
             if (!ChessBoard.locationInBounds(newLocation)) {
