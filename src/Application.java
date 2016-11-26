@@ -24,12 +24,16 @@ public class Application {
         while(!gameOver){
             try {
                 System.out.println(chessGame.getChessBoard().toString());
-                System.out.println("Chess Game Menu:");
-                System.out.println("Q - Quit Game");
                 System.out.println("M - Move a piece");
+                System.out.println("Q - Quit game");
+                System.out.println("R - Reset the game");
                 input = scanner.nextLine();
                 if (input.equalsIgnoreCase("Q") || input.equalsIgnoreCase("QUIT")) {
                     gameOver = true;
+                    continue;
+                } else if (input.equalsIgnoreCase("R") || input.equalsIgnoreCase("RESTART")) {
+                    chessGame = new ChessGame();
+                    System.out.println("===== GAME RESTARTED =====");
                     continue;
                 } else if (input.equalsIgnoreCase("M") || input.equalsIgnoreCase("MOVE")) {
                     currentPiece = getCurrentPiece(chessGame);
@@ -44,7 +48,7 @@ public class Application {
                 e.printStackTrace();
             }
         }
-        System.out.println("Game has ended");
+        System.out.println("===== GAME HAS ENDED =====");
     }
 
     private static ChessPiece getCurrentPiece(ChessGame chessGame) {
