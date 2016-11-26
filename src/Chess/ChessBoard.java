@@ -32,6 +32,10 @@ public class ChessBoard {
      * @param location The location to move to.
      */
     public void placePieceAt(ChessPiece piece, ChessLocation location) {
+        removePieceAt(location);
+        removePieceAt(piece.getChessLocation());
+        board[location.getRow()][location.getCol()] = piece;
+        /*
         if (piece.validMove(location)) {
             if (isPieceAt(location.getRow(), location.getCol()) && 
                 getPieceAt(location).getOwner().equals(piece.getOwner())) {
@@ -47,6 +51,7 @@ public class ChessBoard {
         } else {
             System.out.println("Not a valid move, try again.");
         }
+        */
     }
 
     /**

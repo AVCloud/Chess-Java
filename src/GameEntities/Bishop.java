@@ -19,15 +19,15 @@ public class Bishop extends ChessPiece {
         }
     }
 
-    /** Checks if more is valid for Bishop.
+    /** Checks if more is valid for Bishop, then moves the piece.
      * @return Valid move or not.
      */
     @Override
-    public boolean validMove(ChessLocation location) {
+    public boolean moveTo(ChessLocation location) {
         if (Math.abs(chessLocation.getRow() - location.getRow()) == 
             Math.abs(chessLocation.getCol() - location.getCol())) {
             
-            return checkLineOfSight(chessLocation, location);
+            return checkLineOfSight(chessLocation, location) && super.moveTo(location);
         }
         return false;
     }

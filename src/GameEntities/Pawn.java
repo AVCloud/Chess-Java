@@ -26,29 +26,31 @@ public class Pawn extends ChessPiece {
         firstMove = true;
     }
 
-    /** Checks if more is valid for Pawns.
+    /** Checks if more is valid for Pawns, then moves the piece.
      * @return Valid move or not.
      */
     @Override
-    public boolean validMove(ChessLocation location) {
+    public boolean moveTo(ChessLocation location) {
         if (location.getCol() == chessLocation.getCol()) {
             if (location.getRow() - chessLocation.getRow() == one) {
                 if (firstMove) {
                     firstMove = false;
                 }
-                return true;
+                return !chessGame.getChessBoard().isPieceAt(location.getRow(), location.getCol()) && super.moveTo(location);
             } else if (firstMove && (location.getRow() - chessLocation.getRow() == (one * 2))) {
                 if (firstMove) {
                     firstMove = false;
                 }
-                return true;
+                return !chessGame.getChessBoard().isPieceAt(location.getRow(), location.getCol()) && super.moveTo(location);
             }
         } else if (Math.abs(location.getCol() - chessLocation.getCol()) == 1) {
-            if (chessGame.getChessBoard().isPieceAt(location.getRow(), location.getCol()) && location.getRow() - chessLocation.getRow() == one) {
+            if (chessGame.getChessBoard().isPieceAt(location.getRow(), location.getCol()) &&
+                location.getRow() - chessLocation.getRow() == one) {
+
                 if (firstMove) {
                     firstMove = false;
                 }
-                return true;
+                return super.moveTo(location);
             }
         }
         return false;

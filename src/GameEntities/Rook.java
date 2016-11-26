@@ -20,13 +20,15 @@ public class Rook extends ChessPiece {
         }
     }
 
-    /** Checks if more is valid for Rook.
+    /** Checks if more is valid for Rook, then moves the piece.
      * @return Valid move or not.
      */
     @Override
-    public boolean validMove(ChessLocation location) {
-        if ((chessLocation.getRow() == location.getRow()) != (chessLocation.getCol() == location.getCol())) {
-            return checkLineOfSight(chessLocation, location);
+    public boolean moveTo(ChessLocation location) {
+        if ((chessLocation.getRow() == location.getRow()) !=
+            (chessLocation.getCol() == location.getCol())) {
+
+            return checkLineOfSight(chessLocation, location) && super.moveTo(location);
         }
         return false;
     }

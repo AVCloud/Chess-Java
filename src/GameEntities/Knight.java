@@ -31,11 +31,11 @@ public class Knight extends ChessPiece {
         if (Math.abs(chessLocation.getRow() - location.getRow()) == 2 && 
             Math.abs(chessLocation.getCol() - location.getCol()) == 1) {
 
-            return true; 
+            return super.moveTo(location); 
         } else if (Math.abs(chessLocation.getRow() - location.getRow()) == 1 && 
                    Math.abs(chessLocation.getCol() - location.getCol()) == 2) {
 
-            return true; 
+            return super.moveTo(location); 
         }
         return false;
     }

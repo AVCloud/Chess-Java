@@ -2,6 +2,8 @@ package GameEntities;
 
 import Chess.ChessGame;
 import Chess.ChessLocation;
+import Chess.ChessBoard;
+import java.util.ArrayList;
 
 /**
  * ChessPiece is a general piece class for chess.
@@ -12,8 +14,9 @@ public abstract class ChessPiece {
     protected String owner;
     protected ChessLocation chessLocation;
     protected char id;
+    protected ArrayList<ChessLocation> threateningLocations;
 
-    public abstract boolean validMove(ChessLocation location);
+    public abstract void updateThreateningLocation(ChessLocation newLocation);
 
     /**
      * Sets the private members of the ChessPiece. Such as it's owner
@@ -24,8 +27,9 @@ public abstract class ChessPiece {
      */
     public ChessPiece(String owner, ChessLocation initialLocation, ChessGame game) {
         this.owner = owner;
-        chessLocation = initialLocation;
+        chessLocation = null; 
         chessGame = game;
+        threateningLocations = new ArrayList<>();
         chessGame.getChessBoard().setupPieceAt(this, chessLocation);
     }
 
@@ -90,8 +94,18 @@ public abstract class ChessPiece {
      * Sets the location of the ChessPiece.
      * @param newLocation The new location of the knight.
      */
-    public void moveTo(ChessLocation newLocation) {
-        chessLocation = newLocation;
+    public boolean moveTo(ChessLocation newLocation) {
+        ChessBoard board = chessGame.getChessBoard();
+        ChessPiece oldPiece = board.getPieceAt(newLocation);
+        
+        if (oldPiece == null ||
+            oldPiece.getOwner() != owner) {
+            
+            board.placePieceAt(newLocation);
+            chessLocation = newLocation;
+            return true;
+        }
+        return false;
     }
 
     /**

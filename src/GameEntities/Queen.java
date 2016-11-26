@@ -20,11 +20,11 @@ public class Queen extends ChessPiece {
         }
     }
 
-    /** Checks if more is valid for Queen.
+    /** Checks if more is valid for Queen, then moves the piece.
      * @return Valid move or not.
      */
     @Override
-    public boolean validMove(ChessLocation location) {
-        return checkLineOfSight(chessLocation, location);
+    public boolean moveTo(ChessLocation location) {
+        return checkLineOfSight(chessLocation, location) && super.moveTo(location);
     }
 }

@@ -20,15 +20,15 @@ public class King extends ChessPiece {
         }
     }
 
-    /** Checks if more is valid for King.
+    /** Checks if more is valid for King, then moves the piece.
      * @return Valid move or not.
      */
     @Override
-    public boolean validMove(ChessLocation location) {
+    public boolean moveTo(ChessLocation location) {
         if (Math.abs(chessLocation.getRow() - location.getRow()) <= 1 && 
             Math.abs(chessLocation.getCol() - location.getCol()) <= 1) {
 
-            return checkLineOfSight(chessLocation, location);
+            return checkLineOfSight(chessLocation, location) && super.moveTo(location);
         }
         return false;
     }
