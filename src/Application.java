@@ -15,6 +15,7 @@ public class Application {
     public static void main(String[] args) {
         ChessGame chessGame = new ChessGame();
         boolean gameOver = false;
+        String currentPlayer = "player1";
         Scanner scanner = new Scanner(System.in);
         String input;
 
@@ -24,6 +25,7 @@ public class Application {
         while(!gameOver){
             try {
                 System.out.println(chessGame.getChessBoard().toString());
+                System.out.println(currentPlayer + "'s Turn:");
                 System.out.println("M - Move a piece");
                 System.out.println("Q - Quit game");
                 System.out.println("R - Reset the game");
@@ -37,14 +39,17 @@ public class Application {
                     System.out.println("===== GAME RESTARTED =====");
                     continue;
                 } else if (input.equalsIgnoreCase("M") || input.equalsIgnoreCase("MOVE")) {
-                    currentPiece = getCurrentPiece(chessGame);
+                    currentPiece = getCurrentPiece(chessGame, currentPlayer);
                     newLocation = getNewLocation();
 
-                    currentPiece.moveTo(newLocation);
+                    if (currentPiece.moveTo(newLocation)) {
+                        currentPlayer = (currentPlayer.equalsIgnoreCase("player1")) ? "player2": "player1"; 
+                    } else {
+                        System.out.println("Move was invalid, try again.");
+                    }
                 }
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("Couldn't parse input.");
-                e.printStackTrace();
             } catch (NullPointerException e) {
                 System.out.println("NullPointerException :(, GL Debugging");
                 e.printStackTrace();
@@ -52,7 +57,7 @@ public class Application {
         }
     }
 
-    private static ChessPiece getCurrentPiece(ChessGame chessGame) {
+    private static ChessPiece getCurrentPiece(ChessGame chessGame, String currentPlayer) {
         Scanner scanner = new Scanner(System.in);
         String input;
         ChessLocation currentLocation;
@@ -68,9 +73,11 @@ public class Application {
             }
             currentPiece = chessGame.getChessBoard().getPieceAt(currentLocation);
             if (currentPiece == null) {
-                System.out.println("Invalid piece selected, try again.");
-            } else {
+                System.out.println("Invalid piece selected, out of bounds.");
+            } else if (currentPiece.getOwner().equalsIgnoreCase(currentPlayer)) {
                 return currentPiece;
+            } else {
+                System.out.println("Invalid piece selected, not your piece.");
             }
         }
     }
@@ -86,7 +93,7 @@ public class Application {
             input = scanner.nextLine();
             newLocation = createChessLocation(input);
             if (!ChessBoard.locationInBounds(newLocation)) {
-               System.out.println("Location not on board, try again.");
+               System.out.println("Invalid location selected, out of bounds.");
             } else {
                 return newLocation;
             }
