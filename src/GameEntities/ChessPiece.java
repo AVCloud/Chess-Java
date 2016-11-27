@@ -16,7 +16,7 @@ public abstract class ChessPiece {
     protected char id;
     protected ArrayList<ChessLocation> threateningLocations;
 
-    public abstract void updateThreateningLocation(ChessLocation newLocation);
+    //public abstract void updateThreateningLocation(ChessLocation newLocation);
 
     /**
      * Sets the private members of the ChessPiece. Such as it's owner
@@ -30,7 +30,7 @@ public abstract class ChessPiece {
         chessLocation = null; 
         chessGame = game;
         threateningLocations = new ArrayList<>();
-        chessGame.getChessBoard().setupPieceAt(this, chessLocation);
+        chessGame.getChessBoard().placePieceAt(this, initialLocation);
     }
 
     /**
@@ -101,8 +101,7 @@ public abstract class ChessPiece {
         if (oldPiece == null ||
             oldPiece.getOwner() != owner) {
             
-            board.placePieceAt(newLocation);
-            chessLocation = newLocation;
+            board.placePieceAt(this, newLocation);
             return true;
         }
         return false;
@@ -114,6 +113,10 @@ public abstract class ChessPiece {
      */
     public ChessLocation getChessLocation() {
         return chessLocation;
+    }
+
+    public void setChessLocation(ChessLocation location) {
+        chessLocation = location;
     }
 
     /**

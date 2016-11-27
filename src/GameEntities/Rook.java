@@ -32,4 +32,7 @@ public class Rook extends ChessPiece {
         }
         return false;
     }
+
+    //@Override
+    //public void updateThreateningLocation(ChessLocation newLocation);
 }

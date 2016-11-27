@@ -30,6 +30,7 @@ public class Application {
                 input = scanner.nextLine();
                 if (input.equalsIgnoreCase("Q") || input.equalsIgnoreCase("QUIT")) {
                     gameOver = true;
+                    System.out.println("===== GAME HAS ENDED =====");
                     continue;
                 } else if (input.equalsIgnoreCase("R") || input.equalsIgnoreCase("RESTART")) {
                     chessGame = new ChessGame();
@@ -39,16 +40,16 @@ public class Application {
                     currentPiece = getCurrentPiece(chessGame);
                     newLocation = getNewLocation();
 
-                    chessGame.getChessBoard().placePieceAt(currentPiece, newLocation);
+                    currentPiece.moveTo(newLocation);
                 }
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("Couldn't parse input.");
+                e.printStackTrace();
             } catch (NullPointerException e) {
                 System.out.println("NullPointerException :(, GL Debugging");
                 e.printStackTrace();
             }
         }
-        System.out.println("===== GAME HAS ENDED =====");
     }
 
     private static ChessPiece getCurrentPiece(ChessGame chessGame) {

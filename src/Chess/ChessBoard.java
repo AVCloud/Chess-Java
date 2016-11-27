@@ -32,26 +32,14 @@ public class ChessBoard {
      * @param location The location to move to.
      */
     public void placePieceAt(ChessPiece piece, ChessLocation location) {
-        removePieceAt(location);
-        removePieceAt(piece.getChessLocation());
-        board[location.getRow()][location.getCol()] = piece;
-        /*
-        if (piece.validMove(location)) {
-            if (isPieceAt(location.getRow(), location.getCol()) && 
-                getPieceAt(location).getOwner().equals(piece.getOwner())) {
-
-                System.out.println("Piece is on your team is here.");
-                System.out.println("Not a valid move, try again.");
-            } else {
-                removePieceAt(location);
-                removePieceAt(piece.getChessLocation());
-                board[location.getRow()][location.getCol()] = piece;
-                piece.moveTo(location);
-            }
-        } else {
-            System.out.println("Not a valid move, try again.");
+        if (isPieceAt(location.getRow(), location.getCol())) {
+            removePieceAt(location);
         }
-        */
+        if (piece.getChessLocation() != null) {
+            removePieceAt(piece.getChessLocation());
+        }
+        board[location.getRow()][location.getCol()] = piece;
+        piece.setChessLocation(location);
     }
 
     /**
@@ -60,19 +48,6 @@ public class ChessBoard {
      */
     private void removePieceAt(ChessLocation location) {
         board[location.getRow()][location.getCol()] = null;
-    }
-
-    /**
-     * Setup piece which bypasses valid move check from piece.
-     * Used for initalizing piece on board.
-     * @param piece The piece to set up.
-     * @param location The location to set up at.
-     */
-    public void setupPieceAt(ChessPiece piece, ChessLocation location) {
-        if (board[location.getRow()][location.getCol()] == null) {
-            board[location.getRow()][location.getCol()] = piece;
-            piece.moveTo(location);
-        }
     }
 
     /**
