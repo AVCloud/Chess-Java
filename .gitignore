@@ -12,6 +12,7 @@ hs_err_pid
 
 #IntellJ Project
 .idea/
+out/
 *.iml
 
 #Bluej
