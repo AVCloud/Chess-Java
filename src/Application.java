@@ -21,6 +21,7 @@ public class Application {
 
         ChessLocation newLocation;
         ChessPiece currentPiece;
+        ChessPiece king;
 
         while(!gameOver){
             try {
@@ -39,6 +40,17 @@ public class Application {
                     System.out.println("===== GAME RESTARTED =====");
                     continue;
                 } else if (input.equalsIgnoreCase("M") || input.equalsIgnoreCase("MOVE")) {
+                    
+                    if (currentPlayer.equals("player1")) {
+                        king = chessGame.getPlayer1King();
+                    } else {
+                        king = chessGame.getPlayer2King();
+                    }
+                    ChessPiece danger = king.check();
+                    if (danger != null) {
+                        System.out.println("Your King is in Check from piece at: (" + danger.getChessLocation().getRow() + ", " + danger.getChessLocation().getCol() + ").");
+                    }
+
                     currentPiece = getCurrentPiece(chessGame, currentPlayer);
                     newLocation = getNewLocation();
 

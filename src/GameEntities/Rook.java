@@ -33,6 +33,11 @@ public class Rook extends ChessPiece {
         return false;
     }
 
-    //@Override
-    //public void updateThreateningLocation(ChessLocation newLocation);
+    @Override
+    protected void updateThreateningLocation(ChessLocation newLocation) {
+        super.updateVertical(1);
+        super.updateVertical(-1);
+        super.updateHorizontal(1);
+        super.updateHorizontal(-1);
+    }
 }

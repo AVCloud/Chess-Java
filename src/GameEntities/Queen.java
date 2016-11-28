@@ -27,4 +27,18 @@ public class Queen extends ChessPiece {
     public boolean moveTo(ChessLocation location) {
         return checkLineOfSight(chessLocation, location) && super.moveTo(location);
     }
+
+    @Override
+    public void updateThreateningLocation(ChessLocation newLocation) {
+        super.updateVertical(1);
+        super.updateVertical(-1);
+
+        super.updateHorizontal(1);
+        super.updateHorizontal(-1);
+
+        super.updateDiagonal(1, 1);
+        super.updateDiagonal(-1, 1);
+        super.updateDiagonal(1, -1);
+        super.updateDiagonal(-1, -1);
+    }
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * ChessPiece is a general piece class for chess.
  */
-public abstract class ChessPiece {
+public abstract class ChessPiece implements ChessPieceInterface {
 
     protected ChessGame chessGame;
     protected String owner;
@@ -16,7 +16,7 @@ public abstract class ChessPiece {
     protected char id;
     protected ArrayList<ChessLocation> threateningLocations;
 
-    //public abstract void updateThreateningLocation(ChessLocation newLocation);
+    protected abstract void updateThreateningLocation(ChessLocation newLocation);
 
     /**
      * Sets the private members of the ChessPiece. Such as it's owner
@@ -90,6 +90,55 @@ public abstract class ChessPiece {
         return false;
     }
 
+    protected void updateVertical(int one) {
+        ChessLocation location = new ChessLocation(chessLocation.getRow() + one, chessLocation.getCol());
+        int inc = one;
+        while (ChessBoard.locationInBounds(location)) {
+            ChessPiece piece = chessGame.getChessBoard().getPieceAt(location);
+            if (piece != null) {
+                if (!piece.getOwner().equalsIgnoreCase(owner)) {
+                    threateningLocations.add(location); 
+                } else if (!chessLocation.equals(location)) {
+                    threateningLocations.add(new ChessLocation(location.getRow() - one, location.getCol())); 
+                }
+            } else {
+                location = new ChessLocation(location.getRow() + one, location.getCol());
+            }
+        }
+    }
+
+    protected void updateHorizontal(int one) {
+        ChessLocation location = new ChessLocation(chessLocation.getRow(), chessLocation.getCol() + one);
+        while (ChessBoard.locationInBounds(location)) {
+            ChessPiece piece = chessGame.getChessBoard().getPieceAt(location);
+            if (piece != null) {
+                if (!piece.getOwner().equalsIgnoreCase(owner)) {
+                    threateningLocations.add(location); 
+                } else if (!chessLocation.equals(location)) {
+                    threateningLocations.add(new ChessLocation(location.getRow(), location.getCol() - one)); 
+                }
+            } else {
+                location = new ChessLocation(location.getRow(), location.getCol() + one); 
+            }
+        }
+    }
+
+    protected void updateDiagonal(int rowOne, int colOne) {
+        ChessLocation location = new ChessLocation(chessLocation.getRow() + rowOne, chessLocation.getCol() + colOne);
+        while (ChessBoard.locationInBounds(location)) {
+            ChessPiece piece = chessGame.getChessBoard().getPieceAt(location);
+            if (piece != null) {
+                if (!piece.getOwner().equalsIgnoreCase(owner)) {
+                    threateningLocations.add(location); 
+                } else if (!chessLocation.equals(location)) {
+                    threateningLocations.add(new ChessLocation(location.getRow() - rowOne, location.getCol() - colOne)); 
+                }
+            } else {
+                location = new ChessLocation(location.getRow() + rowOne, location.getCol() + colOne);
+            }
+        }
+    }
+
     /**
      * Sets the location of the ChessPiece.
      * @param newLocation The new location of the knight.
@@ -102,6 +151,7 @@ public abstract class ChessPiece {
             oldPiece.getOwner() != owner) {
             
             board.placePieceAt(this, newLocation);
+            updateThreateningLocation(newLocation);
             return true;
         }
         return false;
@@ -115,6 +165,10 @@ public abstract class ChessPiece {
         return chessLocation;
     }
 
+    /**
+     * Sets the location of the piece.
+     * @param location new location.
+     */
     public void setChessLocation(ChessLocation location) {
         chessLocation = location;
     }
@@ -133,5 +187,13 @@ public abstract class ChessPiece {
      */
     public char getId() {
         return id;
+    }
+
+    /**
+     * Gets threateningLocation
+     * @return ArrayList of ChessLocations
+     */
+    public ArrayList<ChessLocation> getThreateningLocations() {
+        return threateningLocations;
     }
 }

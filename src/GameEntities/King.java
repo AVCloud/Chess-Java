@@ -1,12 +1,11 @@
 package GameEntities;
 
 import Chess.ChessLocation;
+import Chess.ChessBoard;
 import Chess.ChessGame;
 import java.util.ArrayList;
 
 public class King extends ChessPiece {
-    
-    private ArrayList<ChessPiece> threateningPieces;
     /**
      * Creates a King piece.
      * @param owner Owner string.
@@ -20,7 +19,6 @@ public class King extends ChessPiece {
         } else if (owner.equalsIgnoreCase("player2")) {
             id = 'k';
         }
-        threateningPieces = new ArrayList<>();
     }
 
     /** Checks if more is valid for King, then moves the piece.
@@ -35,60 +33,46 @@ public class King extends ChessPiece {
         }
         return false;
     }
+
     @Override
     public void updateThreateningLocation(ChessLocation newLocation) {
+        for (int row = -1; row >= 1; row++) {
+            for (int col = -1; col >= 1; col++) {
+                ChessLocation location = new ChessLocation(chessLocation.getRow() + row, chessLocation.getCol() + col);
+                if (ChessBoard.locationInBounds(location)) {
+                    ChessPiece piece = chessGame.getChessBoard().getPieceAt(location);
+                    if (piece != null &&
+                        !piece.getOwner().equalsIgnoreCase(owner)) {
 
-    }
-
-    private ChessPiece locationInDanger(ChessLocation location) {
-
-
-    }
-
-    private void updateVertical(ChessLocation location, int one) {
-        ChessBoard board = chessGame.getChessBoard();
-        int inc = one;
-        while (location.getRow() + inc < 8 &&
-                location.getRow() + inc > 0) {
-
-            ChessPiece piece = board.getPieceAt(new ChessLocation(location.getRow() + inc, location.getCol()));
-            if (piece != null) {
-                if (piece.getOwner().equalsIgnoreCase(owner)) {
-                    return;
-                } else if (Character.toLowerCase(piece.getId()) == 'q' ||
-                            Character.toLowerCase(piece.getId()) == 'r' ||
-                            Character.toLowerCase(piece.getId()) == 'k' ||
-                            Character.toLowerCase(piece.getId()) == 'p') {
-
-                    threateningPieces.add(piece);
+                        threateningLocations.add(location);
+                    }
                 }
-            } else {
-                inc += one;
             }
         }
     }
 
-    private void updateHorizontal(ChessLocation location, int one) {
+    private ChessPiece locationInDanger(ChessLocation destination) {
         ChessBoard board = chessGame.getChessBoard();
-        int inc = one;
-        while (location.getCol() + inc < 8 &&
-                location.getCol + inc > 0) {
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                ChessPiece piece = board.getPieceAt(new ChessLocation(row, col));
+                if (piece != null &&
+                    !piece.getOwner().equals(owner)) {
 
-            ChessPiece piece = board.getPieceAt(new ChessLocation(location.getRow(), location.getCol() + inc));
-            if (piece != null) {
-                if (piece.getOwner().equalsIgnoreCase(owner)) {
-                    return;
-                } else if (Character.toLowerCase(piece.getId()) == 'q' ||
-                            Character.toLowerCase(piece.getId()) == 'r' ||
-                            Character.toLowerCase(piece.getId()) == 'k' ||
-                            Character.toLowerCase(piece.getId()) == 'p') {
-
-                    threateningPieces.add(piece);
+                    piece.updateThreateningLocation();
+                    for (ChessLocation l: piece.getThreateningLocations()) {
+                        if (destination.equals(l)) {
+                            return piece;
+                        }
+                    }
                 }
-            } else {
-                inc += one;
             }
         }
+        return null;
+    }
 
+    public ChessPiece check() {
+        ChessPiece piece = locationInDanger(chessLocation);
+        return piece;
     }
 }

@@ -9,6 +9,8 @@ import GameEntities.*;
 public class ChessGame {
 
     private ChessBoard chessBoard;
+    private ChessPiece player1King;
+    private ChessPiece player2King;
 
     /**
      * Create new instances of nessary properties.
@@ -44,7 +46,12 @@ public class ChessGame {
         colIncerment += 1;
 
         // King & Queen
-        ChessPiece k = new King(player, new ChessLocation(side, colIncerment), this);
+        if (player.equalsIgnoreCase("player1")) {
+            player1King = new King(player, new ChessLocation(side, colIncerment), this);
+        } else {
+            player2King = new King(player, new ChessLocation(side, colIncerment), this);
+        }
+
         ChessPiece q = new Queen(player, new ChessLocation(side, 7-colIncerment), this);
 
         // Pawns
@@ -59,5 +66,13 @@ public class ChessGame {
      */
     public ChessBoard getChessBoard() {
         return chessBoard;
+    }
+
+    public ChessPiece getPlayer1King() {
+        return player1King;
+    }
+
+    public ChessPiece getPlayer2King() {
+        return player2King;
     }
 }

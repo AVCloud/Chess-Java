@@ -2,6 +2,7 @@ package GameEntities;
 
 import Chess.ChessLocation;
 import Chess.ChessGame;
+import Chess.ChessBoard;
 
 public class Knight extends ChessPiece {
 
@@ -38,5 +39,24 @@ public class Knight extends ChessPiece {
             return super.moveTo(location); 
         }
         return false;
+    }
+
+    @Override
+    public void updateThreateningLocation(ChessLocation newLocation) {
+        int[] rowMoves = { -2, -1, 1, 2, -2, -1, 1, 2 };
+        int[] colMoves = { 1, 2, 2, 1, -1, -2, -2, -1 };
+
+        for (int i = 0; i < 8; i++) {
+            ChessLocation location = new ChessLocation(rowMoves[i], colMoves[i]);
+            if (ChessBoard.locationInBounds(location)) {
+                ChessPiece piece = chessGame.getChessBoard().getPieceAt(location);
+                
+                if (piece != null && 
+                    !piece.getOwner().equals(owner)) {
+
+                    threateningLocations.add(location);
+                }
+            }
+        }
     }
 }

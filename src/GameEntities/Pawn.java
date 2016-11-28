@@ -55,4 +55,25 @@ public class Pawn extends ChessPiece {
         }
         return false;
     }
+
+    @Override
+    public void updateThreateningLocation(ChessLocation newLocation) {
+        int one = 0;
+        if (owner.equalsIgnoreCase("player1") &&
+            newLocation.getRow() <= 6) {
+            one = 1;
+        } else if (owner.equalsIgnoreCase("player2") &&
+                    newLocation.getRow() >= 1) {
+            one = -1;
+        }
+
+        threateningLocations.clear();
+
+        if (newLocation.getCol() >= 1) {
+            threateningLocations.add(new ChessLocation(newLocation.getRow() + one, newLocation.getCol() - 1));
+        }
+        if (newLocation.getCol() <= 6) {
+            threateningLocations.add(new ChessLocation(newLocation.getRow() + one, newLocation.getCol() + 1));
+        }
+    }
 }

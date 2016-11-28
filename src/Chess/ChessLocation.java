@@ -18,6 +18,16 @@ public class ChessLocation {
         setCol(col);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && obj instanceof ChessLocation) {
+            ChessLocation l = (ChessLocation) obj;
+            return (row == l.getRow() &&
+                    col == l.getCol());
+        }
+        return false;
+    }
+
     public int getRow() {
         return row;
     }

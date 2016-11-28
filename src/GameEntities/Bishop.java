@@ -31,4 +31,12 @@ public class Bishop extends ChessPiece {
         }
         return false;
     }
+
+    @Override
+    public void updateThreateningLocation(ChessLocation newLocation) {
+        super.updateDiagonal(1, 1);
+        super.updateDiagonal(-1, 1);
+        super.updateDiagonal(1, -1);
+        super.updateDiagonal(-1, -1);
+    }
 }
