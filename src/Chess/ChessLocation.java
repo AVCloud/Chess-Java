@@ -14,8 +14,8 @@ public class ChessLocation {
      * @param col Col to set.
      */
     public ChessLocation(int row, int col) {
-        setRow(row);
-        setCol(col);
+        this.row = row;
+        this.col = col;
     }
 
     @Override

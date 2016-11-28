@@ -33,8 +33,13 @@ public class Rook extends ChessPiece {
         return false;
     }
 
+    /**
+     * Updates the threatening locations.
+     */
     @Override
-    protected void updateThreateningLocation(ChessLocation newLocation) {
+    protected void updateThreateningLocation() {
+        threateningLocations.clear();
+
         super.updateVertical(1);
         super.updateVertical(-1);
         super.updateHorizontal(1);

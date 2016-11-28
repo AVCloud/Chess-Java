@@ -56,24 +56,27 @@ public class Pawn extends ChessPiece {
         return false;
     }
 
+    /**
+     * Updates the threatening locations.
+     */
     @Override
-    public void updateThreateningLocation(ChessLocation newLocation) {
+    protected void updateThreateningLocation() {
         int one = 0;
         if (owner.equalsIgnoreCase("player1") &&
-            newLocation.getRow() <= 6) {
+            chessLocation.getRow() <= 6) {
             one = 1;
         } else if (owner.equalsIgnoreCase("player2") &&
-                    newLocation.getRow() >= 1) {
+                    chessLocation.getRow() >= 1) {
             one = -1;
         }
 
         threateningLocations.clear();
 
-        if (newLocation.getCol() >= 1) {
-            threateningLocations.add(new ChessLocation(newLocation.getRow() + one, newLocation.getCol() - 1));
+        if (chessLocation.getCol() >= 1) {
+            threateningLocations.add(new ChessLocation(chessLocation.getRow() + one, chessLocation.getCol() - 1));
         }
-        if (newLocation.getCol() <= 6) {
-            threateningLocations.add(new ChessLocation(newLocation.getRow() + one, newLocation.getCol() + 1));
+        if (chessLocation.getCol() <= 6) {
+            threateningLocations.add(new ChessLocation(chessLocation.getRow() + one, chessLocation.getCol() + 1));
         }
     }
 }

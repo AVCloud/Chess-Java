@@ -58,7 +58,7 @@ public class ChessBoard {
     public static boolean locationInBounds(ChessLocation location) {
         return location.getRow() >= 0 && 
                location.getRow() < 8 && 
-               location.getRow() >= 0 && 
+               location.getCol() >= 0 &&
                location.getCol() < 8;
     }
 

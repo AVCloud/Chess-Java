@@ -32,8 +32,12 @@ public class Bishop extends ChessPiece {
         return false;
     }
 
+    /**
+     * Updates the threatening locations.
+     */
     @Override
-    public void updateThreateningLocation(ChessLocation newLocation) {
+    protected void updateThreateningLocation() {
+        threateningLocations.clear();
         super.updateDiagonal(1, 1);
         super.updateDiagonal(-1, 1);
         super.updateDiagonal(1, -1);

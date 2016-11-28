@@ -34,8 +34,12 @@ public class King extends ChessPiece {
         return false;
     }
 
+    /**
+     * Updates the threatening locations.
+     */
     @Override
-    public void updateThreateningLocation(ChessLocation newLocation) {
+    protected void updateThreateningLocation() {
+        threateningLocations.clear();
         for (int row = -1; row >= 1; row++) {
             for (int col = -1; col >= 1; col++) {
                 ChessLocation location = new ChessLocation(chessLocation.getRow() + row, chessLocation.getCol() + col);
@@ -51,7 +55,11 @@ public class King extends ChessPiece {
         }
     }
 
-    private ChessPiece locationInDanger(ChessLocation destination) {
+    /**
+     * Finds the piece if there is on that puts the king in danger
+     * @return First piece found to put king in danger
+     */
+    public ChessPiece check() {
         ChessBoard board = chessGame.getChessBoard();
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
@@ -61,7 +69,7 @@ public class King extends ChessPiece {
 
                     piece.updateThreateningLocation();
                     for (ChessLocation l: piece.getThreateningLocations()) {
-                        if (destination.equals(l)) {
+                        if (chessLocation.equals(l)) {
                             return piece;
                         }
                     }
@@ -69,10 +77,5 @@ public class King extends ChessPiece {
             }
         }
         return null;
-    }
-
-    public ChessPiece check() {
-        ChessPiece piece = locationInDanger(chessLocation);
-        return piece;
     }
 }

@@ -21,7 +21,7 @@ public class Application {
 
         ChessLocation newLocation;
         ChessPiece currentPiece;
-        ChessPiece king;
+        King king;
 
         while(!gameOver){
             try {
@@ -62,6 +62,7 @@ public class Application {
                 }
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("Couldn't parse input.");
+                e.printStackTrace();
             } catch (NullPointerException e) {
                 System.out.println("NullPointerException :(, GL Debugging");
                 e.printStackTrace();

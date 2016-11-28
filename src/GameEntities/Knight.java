@@ -41,11 +41,15 @@ public class Knight extends ChessPiece {
         return false;
     }
 
+    /**
+     * Updates the threatening locations.
+     */
     @Override
-    public void updateThreateningLocation(ChessLocation newLocation) {
+    protected void updateThreateningLocation() {
         int[] rowMoves = { -2, -1, 1, 2, -2, -1, 1, 2 };
         int[] colMoves = { 1, 2, 2, 1, -1, -2, -2, -1 };
 
+        threateningLocations.clear();
         for (int i = 0; i < 8; i++) {
             ChessLocation location = new ChessLocation(rowMoves[i], colMoves[i]);
             if (ChessBoard.locationInBounds(location)) {

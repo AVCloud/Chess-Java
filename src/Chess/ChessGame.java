@@ -9,8 +9,8 @@ import GameEntities.*;
 public class ChessGame {
 
     private ChessBoard chessBoard;
-    private ChessPiece player1King;
-    private ChessPiece player2King;
+    private King player1King;
+    private King player2King;
 
     /**
      * Create new instances of nessary properties.
@@ -68,11 +68,11 @@ public class ChessGame {
         return chessBoard;
     }
 
-    public ChessPiece getPlayer1King() {
+    public King getPlayer1King() {
         return player1King;
     }
 
-    public ChessPiece getPlayer2King() {
+    public King getPlayer2King() {
         return player2King;
     }
 }

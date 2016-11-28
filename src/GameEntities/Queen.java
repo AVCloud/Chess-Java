@@ -28,8 +28,13 @@ public class Queen extends ChessPiece {
         return checkLineOfSight(chessLocation, location) && super.moveTo(location);
     }
 
+    /**
+     * Updates the threatening locations.
+     */
     @Override
-    public void updateThreateningLocation(ChessLocation newLocation) {
+    protected void updateThreateningLocation() {
+        threateningLocations.clear();
+
         super.updateVertical(1);
         super.updateVertical(-1);
 

@@ -16,7 +16,7 @@ public abstract class ChessPiece implements ChessPieceInterface {
     protected char id;
     protected ArrayList<ChessLocation> threateningLocations;
 
-    protected abstract void updateThreateningLocation(ChessLocation newLocation);
+    protected abstract void updateThreateningLocation();
 
     /**
      * Sets the private members of the ChessPiece. Such as it's owner
@@ -90,6 +90,10 @@ public abstract class ChessPiece implements ChessPieceInterface {
         return false;
     }
 
+    /**
+     * Updates the threathening locations for a vertical direction.
+     * @param one The direction to check in
+     */
     protected void updateVertical(int one) {
         ChessLocation location = new ChessLocation(chessLocation.getRow() + one, chessLocation.getCol());
         int inc = one;
@@ -98,8 +102,10 @@ public abstract class ChessPiece implements ChessPieceInterface {
             if (piece != null) {
                 if (!piece.getOwner().equalsIgnoreCase(owner)) {
                     threateningLocations.add(location); 
+                    return;
                 } else if (!chessLocation.equals(location)) {
                     threateningLocations.add(new ChessLocation(location.getRow() - one, location.getCol())); 
+                    return;
                 }
             } else {
                 location = new ChessLocation(location.getRow() + one, location.getCol());
@@ -107,6 +113,10 @@ public abstract class ChessPiece implements ChessPieceInterface {
         }
     }
 
+    /**
+     * Updates the threathening locations for a horizonal direction.
+     * @param one The direction to check in
+     */
     protected void updateHorizontal(int one) {
         ChessLocation location = new ChessLocation(chessLocation.getRow(), chessLocation.getCol() + one);
         while (ChessBoard.locationInBounds(location)) {
@@ -114,8 +124,10 @@ public abstract class ChessPiece implements ChessPieceInterface {
             if (piece != null) {
                 if (!piece.getOwner().equalsIgnoreCase(owner)) {
                     threateningLocations.add(location); 
+                    return;
                 } else if (!chessLocation.equals(location)) {
                     threateningLocations.add(new ChessLocation(location.getRow(), location.getCol() - one)); 
+                    return;
                 }
             } else {
                 location = new ChessLocation(location.getRow(), location.getCol() + one); 
@@ -123,6 +135,11 @@ public abstract class ChessPiece implements ChessPieceInterface {
         }
     }
 
+    /**
+     * Updates the threathening locations for a diagonal direction.
+     * @param rowOne The row direction to check in
+     * @param colOne The col direction to check in
+     */
     protected void updateDiagonal(int rowOne, int colOne) {
         ChessLocation location = new ChessLocation(chessLocation.getRow() + rowOne, chessLocation.getCol() + colOne);
         while (ChessBoard.locationInBounds(location)) {
@@ -130,8 +147,10 @@ public abstract class ChessPiece implements ChessPieceInterface {
             if (piece != null) {
                 if (!piece.getOwner().equalsIgnoreCase(owner)) {
                     threateningLocations.add(location); 
+                    return;
                 } else if (!chessLocation.equals(location)) {
                     threateningLocations.add(new ChessLocation(location.getRow() - rowOne, location.getCol() - colOne)); 
+                    return;
                 }
             } else {
                 location = new ChessLocation(location.getRow() + rowOne, location.getCol() + colOne);
@@ -151,7 +170,6 @@ public abstract class ChessPiece implements ChessPieceInterface {
             oldPiece.getOwner() != owner) {
             
             board.placePieceAt(this, newLocation);
-            updateThreateningLocation(newLocation);
             return true;
         }
         return false;
